@@ -1,0 +1,136 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Weed Analysis</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            background-image: url('https://img.freepik.com/free-photo/large-green-rice-field-with-green-rice-plants-rows_181624-28862.jpg?uid=R166818392&ga=GA1.1.24790444.1728120492&semt=ais_hybrid');  
+            background-size: cover;  
+            color: black;  
+            margin: 0;  
+            padding: 20px;  
+        }  
+        .container {  
+            display: flex;  
+            justify-content: space-between;  
+            align-items: flex-start;  
+            background-color: rgba(255, 255, 255, 0.8);  
+            padding: 20px;  
+            border-radius: 10px;  
+        }  
+        .left {  
+            flex: 1;  
+            margin-right: 20px;  
+            padding: 20px;  
+            background-color: rgba(58, 84, 58, 0.8);  
+            border-radius: 10px;  
+        }  
+        .right {  
+            flex: 0 0 200px;  
+            background-color: green;  
+            color: white;  
+            padding: 20px;  
+            border-radius: 10px;  
+            text-align: center;  
+        }  
+        h1 {  
+            font-size: 2em;  
+            margin-bottom: 20px;  
+        }  
+        .status {  
+            display: flex;  
+            align-items: center;  
+            margin-top: 10px;  
+        }  
+        .status div {  
+            width: 20px;  
+            height: 20px;  
+            border-radius: 50%;  
+            margin-right: 10px;  
+        }  
+        .fine { background-color: green; }  
+        .low { background-color: yellow; }  
+        .high { background-color: red; }  
+        .label {  
+            font-weight: bold;  
+        }  
+        button {  
+            background-color: white;  
+            color: black;  
+            border: none;  
+            padding: 10px 20px;  
+            font-size: 1em;  
+            border-radius: 5px;  
+            cursor: pointer;  
+        }  
+        button:hover {  
+            background-color: lightgray;  
+        }  
+    </style>  
+    <script>  
+        function calculateWeedStress() {  
+            const cropName = document.getElementById('cropName').value;  
+            const fieldArea = parseFloat(document.getElementById('fieldArea').value);  
+            const resultContainer = document.getElementById('result');  
+
+            if (!cropName || isNaN(fieldArea)) {  
+                resultContainer.innerHTML = 'Please enter a valid crop name and field area.';  
+                return;  
+            }  
+
+            // Example calculation: Simple assumption based on area  
+            let weedStressLevel;  
+            if (fieldArea < 50) {  
+                weedStressLevel = 'FINE';  
+            } else if (fieldArea <= 100) {  
+                weedStressLevel = 'LOW WEED PRESSURE';  
+            } else {  
+                weedStressLevel = 'HIGH WEED PRESSURE';  
+            }  
+
+            resultContainer.innerHTML = `  
+                <h3>Results for ${cropName}</h3>  
+                <p>Field Area: ${fieldArea} acres</p>  
+                <p>Weed Stress Level: ${weedStressLevel}</p>  
+            `;  
+        }  
+    </script>  
+</head>  
+<body>  
+
+<div class="container">  
+    <div class="left">  
+        <h1>WEED ANALYSIS</h1>  
+        <p class="label">CROP:</p>  
+        <input type="text" id="cropName" placeholder="Enter crop name" style="width: 100%; padding: 5px;">  
+        <p class="label">FIELD AREA:</p>  
+        <input type="text" id="fieldArea" placeholder="Enter field area (acres)" style="width: 100%; padding: 5px;">  
+        
+        <div class="status">  
+            <div class="fine"></div>  
+            <span>FINE</span>  
+        </div>  
+        <div class="status">  
+            <div class="low"></div>  
+            <span>LOW WEED PRESSURE</span>  
+        </div>  
+        <div class="status">  
+            <div class="high"></div>  
+            <span>HIGH WEED PRESSURE</span>  
+        </div>  
+    </div>  
+    
+    <div class="right">  
+        <h2>Total Area</h2>  
+        <p class="label">WEED STRESS:</p>  
+        <button onclick="calculateWeedStress()">CALCULATE</button>  
+        <div id="result" style="margin-top: 20px;"></div>  
+    </div>  
+    <a href="frontPage2.html" class="menu-item">HOME</a>
+</div>  
+
+</body>  
+</html>
